@@ -7,7 +7,7 @@
   </head>
   <body>
    <% model.forEach(function(user,i) { %>
-      <h2>Name: <a href="/teams/<%= i %>"> <%= user.username %> </a></h2>
+      <h2>Name: <a href="/users/<%= i %>"> <%= user.username %> </a></h2>
       <br>
     <% }) %>
   </body>

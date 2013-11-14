@@ -2,8 +2,8 @@ var mongo = require("../models/mymongo.js");
 
 exports.list = function(req, res){
 	mongo.find("db", "users", {}, function(model){
-		//res.send(model);
-		res.render('teams', {teams: model});
+		res.send(model);
+		//res.render('users', {users: model});
 	});
 }
 
