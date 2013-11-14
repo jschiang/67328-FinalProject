@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="javascript.js"></script>
+  </head>
+  <body>
+   <% model.forEach(function(user,i) { %>
+      <h2>Name: <a href="/teams/<%= i %>"> <%= user.username %> </a></h2>
+      <br>
+    <% }) %>
+  </body>
+</html>
