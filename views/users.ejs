@@ -3,12 +3,23 @@
     <script
       src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
     </script>
-    <script type="text/javascript" src="javascript.js"></script>
+    <script type="text/javascript" src="../usersCrud.js"></script>
   </head>
   <body>
-   <% model.forEach(function(user,i) { %>
-      <h2>Name: <a href="/users/<%= i %>"> <%= user.username %> </a></h2>
-      <br>
-    <% }) %>
+    <div id='usersList'>
+     <% users.forEach(function(user) { %>
+        <p>Name: <a href="/users/<%=user.username%>"> <%= user.username %> </a></p>
+      <% }) %>
+    </div>
+
+    <div id='newUser'>
+      <h3>Make a new User</h3>
+      <form id="newUserForm">
+        <input type="text" id="firstname" name="firstname" placeholder="First Name"><br>
+        <input type="text" id="lastname" name="lastname" placeholder="Last Name"><br>
+        <input type="text" id="username" name="username" placeholder="Username"><br>
+        <input id="putButton" type="submit" value="Create User" onclick="newUser()">
+      </form>
+    </div>
   </body>
 </html>

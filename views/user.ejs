@@ -1,0 +1,20 @@
+<html>
+	<head>	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    	<script type="text/javascript" src="../usersCrud.js"></script>
+    	
+	</head>
+	<h1>Hi <%=user.firstname%></h1>
+	<div>
+		<form id='updateUser' style='display: none;'>
+			<input type='text' id='newfName' placeholder=<%=user.firstname%>><br>
+			<input type='text' id='newlName' placeholder=<%=user.lastname%>><br>
+			<input type='text' id='newuName' placeholder=<%=user.username%>><br>
+			<input type='submit' value='Submit' onclick="postUser('<%=user.username%>')">
+		</form>
+	</div>
+	<div id='userActions'>
+		<button type='button' onclick="$('#updateUser').show();">Edit User</button>
+    	<button type='button'onclick="deleteUser('<%=user.username%>')">Delete User</button>
+    </div>	
+</html>

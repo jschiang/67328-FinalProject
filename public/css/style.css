@@ -1,0 +1,39 @@
+h1 {
+	font-family: verdana;
+	float:left ;
+	margin: 15px;
+}
+
+body {
+	margin-left: 10%;
+	font-family: verdana
+}
+
+li {
+	margin: 2px;
+	cursor: pointer;
+}
+
+li:hover {
+	color: grey;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#form{
+	margin: 15px;
+	float: left;
+}
+
+#SCplayer {
+	margin-top:  30px;
+}
+
+#songResults{
+	width: 400px;
+	height: 100px;
+	overflow-y: scroll;
+	font-size: x-small;
+}
