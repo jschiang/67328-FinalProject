@@ -37,6 +37,7 @@ app.use(function(req, res, next){
 
 // Routes
 app.get('/', routes.index);
+app.get('/index', routes.index);
 //app.get('/users/:db/:collection/:operation', user.mongo);
 
 app.get('/users', user.list);
@@ -80,7 +81,9 @@ app.get('/login', function(req, res){
 
 app.post('/login', function(req, res){
   authenticate(req.body.username, req.body.password, function(err, user){
+    console.log("authenticate back");
     if (user) {
+      console.log("if statement true");
       // Regenerate session when signing in
       // to prevent fixation 
       req.session.regenerate(function(){
@@ -91,9 +94,12 @@ app.post('/login', function(req, res){
         req.session.success = 'Authenticated as ' + user.name
           + ' click to <a href="/logout">logout</a>. '
           + ' You may now access <a href="/restricted">/restricted</a>.';
-        res.redirect('back');
+
+        
+        res.redirect('index');
       });
     } else {
+      console.log("login failed");
       req.session.error = 'Authentication failed, please check your '
         + ' username and password.';
       res.redirect('login');
@@ -103,18 +109,18 @@ app.post('/login', function(req, res){
 
 function authenticate(name, pass, fn) {
   if (!module.parent) console.log('authenticating %s:%s', name, pass);
-  mongo.find("db", "users", {username: req.params.username}, function(model){
+  mongo.find("db", "users", {username: name}, function(model){
     if (model.length<1){
       console.log("cannot find user");
     }
     else{
-      var user = user: model[0];
+      var user = model[0];
         hash(pass, user.salt, function(err, hash){
+            console.log(user);
             if (err) return fn(err);
-            if (hash == user.hash) return fn(null, user);
+            if (hash == user.hash) console.log('hash matches'); return fn(null, user);
             fn(new Error('invalid password'));
           });
-      }
     } 
   });
   

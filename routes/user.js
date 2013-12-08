@@ -1,6 +1,6 @@
 var mongo = require("../models/mymongo.js");
 var crypto = require('crypto');
-var hash = require('../pass.js')
+var hash = require('../pass.js').hash;
 
 exports.list = function(req, res){
 	mongo.find("db", "users", {}, function(model){
@@ -26,7 +26,7 @@ exports.put = function(req, res){
       		throw (err);
       	}
       	else {
-	      	mongo.insert("db", "users", {username: uname, password: pwd, salt: salt}, function(model){
+	      	mongo.insert("db", "users", {username: uname, password: hash, salt: salt}, function(model){
 				console.log('Inserted' + model);
 			});
 			mongo.find("db", "users", {}, function(model){
@@ -52,19 +52,18 @@ exports.post = function(req, res){
 	//console.log(uName);
 	var salt = makeSalt();
 	authenticate(oldName, oldPass, function(err, user){
-		if (user){
-			mongo.update("db", "users", {find: {username: oldName}, update: {$set:{username:uName, password: }}}, function(model){
-				res.send(model);
-			});
-		}
-		else {
-			req.session.error = 'Authentication failed, please check your username and password'
-			res.redirect('/users');
-		}
-	})
-		mongo.update("db", "users", {find: {username: oldName}, update: {$set:{username:uName, password: }}}, function(model){
-				res.send(model);
+		hash(newPass, salt, function(err, hash){
+			if (user){
+				mongo.update("db", "users", {find: {username: oldName}, update: {$set:{username:uName, password: hash, salt: salt}}}, function(model){
+					res.send(model);
+				});
+			}
+			else {
+				req.session.error = 'Authentication failed, please check your username and password'
+				res.redirect('/users');
+			}
 		});
+	});
 }
 
 function makeSalt()
