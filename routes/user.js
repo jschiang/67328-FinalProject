@@ -1,4 +1,6 @@
 var mongo = require("../models/mymongo.js");
+var crypto = require('crypto');
+var hash = require('../pass.js')
 
 exports.list = function(req, res){
 	mongo.find("db", "users", {}, function(model){
@@ -16,15 +18,22 @@ exports.get = function(req, res){
 
 exports.put = function(req, res){
 	var uname = req.body.username;
-	var fname = req.body.firstname;
-	var lname = req.body.lastname;
+	var password = req.body.password;
 
-	mongo.insert("db", "users", {username: uname, firstname: fname, lastname: lname}, function(model){
-		console.log('Inserted' + model);
-	});
-	mongo.find("db", "users", {}, function(model){
-		//console.log(model);
-		res.render('users', {users: model});
+	var salt = makeSalt();
+	hash(password, salt, function(err, hash){
+      	if(err){
+      		throw (err);
+      	}
+      	else {
+	      	mongo.insert("db", "users", {username: uname, password: pwd, salt: salt}, function(model){
+				console.log('Inserted' + model);
+			});
+			mongo.find("db", "users", {}, function(model){
+				//console.log(model);
+				res.render('users', {users: model});
+			});
+		}
 	});
 }
 
@@ -38,12 +47,59 @@ exports.delete = function(req, res){
 exports.post = function(req, res){
 	var oldName = req.body.oldName;
 	var uName = req.body.newuName;
-	var	fName = req.body.newfName;
-	var lName = req.body.newlName;
-	console.log(uName);
-	mongo.update("db", "users", {find: {username: oldName}, update: {$set:{username:uName, firstname:fName, lastname:lName}}}, function(model){
-			res.send(model);
-	});
+	var oldPass = req.body.oldPass;
+	var newPass = req.body.newPass;
+	//console.log(uName);
+	var salt = makeSalt();
+	authenticate(oldName, oldPass, function(err, user){
+		if (user){
+			mongo.update("db", "users", {find: {username: oldName}, update: {$set:{username:uName, password: }}}, function(model){
+				res.send(model);
+			});
+		}
+		else {
+			req.session.error = 'Authentication failed, please check your username and password'
+			res.redirect('/users');
+		}
+	})
+		mongo.update("db", "users", {find: {username: oldName}, update: {$set:{username:uName, password: }}}, function(model){
+				res.send(model);
+		});
 }
+
+function makeSalt()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+/*
+function authenticate(name, pass, fn) {
+  if (!module.parent) console.log('authenticating %s:%s', name, pass);
+  mongo.find("db", "users", {username: req.params.username}, function(model){
+		if (model.length<1){
+			console.log("cannot find user");
+		}
+		else{
+			var user = user: model[0];
+				hash(pass, user.salt, function(err, hash){
+				    if (err) return fn(err);
+				    if (hash == user.hash) return fn(null, user);
+				    fn(new Error('invalid password'));
+				  });
+			}
+		}	
+	});
+  
+}
+*/
+
+
+
 
 	

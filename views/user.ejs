@@ -4,12 +4,13 @@
     	<script type="text/javascript" src="../usersCrud.js"></script>
     	
 	</head>
-	<h1>Hi <%=user.firstname%></h1>
+	<h1>Hi <%=user.username%></h1>
 	<div>
 		<form id='updateUser' style='display: none;'>
-			<input type='text' id='newfName' placeholder=<%=user.firstname%>><br>
-			<input type='text' id='newlName' placeholder=<%=user.lastname%>><br>
 			<input type='text' id='newuName' placeholder=<%=user.username%>><br>
+			<inptu type='passwprd' id='oldPass' placerhold='Old Password'><br>
+			<input type='password' id='newPass' placeholder='New Password'><br>
+			<input type='password' id='confirm' placeholder='Confirm Password'><br>
 			<input type='submit' value='Submit' onclick="postUser('<%=user.username%>')">
 		</form>
 	</div>
