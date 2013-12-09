@@ -134,5 +134,5 @@ function authenticate(name, pass, fn) {
 }
 
 
-app.listen(3333);
-console.log("Express server listening to 3333");
+app.listen(3000);
+console.log("Express server listening to 3000");
