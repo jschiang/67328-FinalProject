@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title><%= title %></title>
@@ -7,67 +8,90 @@
       </script>
       <script src="SCapi.js" type="text/javacript"></script>
     <script type="text/javascript" src="soundcloudJS.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <script type="text/javascript" src="player.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="(min-width: 800px)"> 
   </head>
 
   <body>
+  <% include header.ejs %><br>
+
+    <div id="soundcloud">
+
+     <div id="search">
+        <div id="form">
+          <form id="songsForm">
+            <input type="text" id="query" placeholder='Search'>
+            <input id="searchButton" type="submit" value="Submit" onclick="search()")>
+          </form>
+        </div>
+
+        <div id="results">
+          <h3>Results</h3>
+            <div id="songResults">
+              <ul id="resultsList">
+              </ul>
+            </div>
+        </div>
+      </div>
+
+      <div id="SCplayer">
+        <iframe frameborder="no" height="100" scrolling="no" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/89894560" width="40%"></iframe>
+      </div>
+
+
+    </div>
+
+    <input id="slider" type="range" value="0" />
 
     <div id="twoSides">
-      <div id="queue1">
-        <h3>Queue 1</h3>
-        <ul class="queue">
-          <% queue.forEach(function(song){ 
-              if(song.queue == 'queue1'){%>
-            <li><%=song.songName%></li>
-          <%}
-          });%>
-        </ul>
-      </div>  
-      <audio controls="controls" id="aud1">
-         <!-- <source src="track.ogg" type="audio/ogg" /> -->
-          <source src="uploads/hitchhikers1.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element
-      </audio>
 
-      <audio controls="controls" id="aud2">
-       <!-- <source src="track.ogg" type="audio/ogg" /> -->
-        <source src="uploads/Adams, Douglas --  Mostly Harmless -- Disc 2 of 5.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-      </audio>
+      <div id="side1">
+        <div id="juke1" class="juke">
+          <div class="info"></div>
+          <audio controls="controls" id="aud1">
+             <!-- <source src="track.ogg" type="audio/ogg" /> -->
+              <source src="uploads/hitchhikers1.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element
+          </audio>
+        </div>
 
-      <div id="queue2">
-        <h3>Queue2</h3>
-        <ul class="queue">
-          <% queue.forEach(function(song){ 
-            if(song.queue == 'queue2'){%>
-            <li><%=song.songName%></li>
-          <%}
-          });%>
-        </ul>
+        <div id="queue1" class="queue">
+          <h3>Queue 1</h3>
+          <ul class="queue">
+            <% queue.forEach(function(song){ 
+                if(song.queue == 'queue1'){%>
+              <li><%=song.songName%></li>
+            <%}
+            });%>
+          </ul>
+        </div>  
+      </div>
+
+      <div id="side2">
+         <div id="juke2" class="juke">
+            <div class="info"></div>
+              <audio controls="controls" id="aud2">
+               <!-- <source src="track.ogg" type="audio/ogg" /> -->
+                <source src="uploads/Adams, Douglas --  Mostly Harmless -- Disc 2 of 5.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+              </audio>
+          </div>
+
+     
+        <div id="queue2" class="queue">
+          <h3>Queue2</h3>
+          <ul class="queue">
+            <% queue.forEach(function(song){ 
+              if(song.queue == 'queue2'){%>
+              <li><%=song.songName%></li>
+            <%}
+            });%>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div id="SCplayer">
-      <iframe frameborder="no" height="100" scrolling="no" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/89894560" width="40%"></iframe>
-    </div>
-
-    <div id="form">
-      <form id="songsForm">
-        <input type="text" id="query" placeholder='Search'>
-        <input id="searchButton" type="submit" value="Submit" onclick="search()")>
-      </form>
-    </div>
-
-    <div id="results">
-      <h3>Results</h3>
-        <div id="songResults">
-          <ul id="resultsList">
-          </ul>
-        </div>
-    </div>
-
-    <h3><a href='/songs'>View Songs List</a></h3>
-    <h3><a href='/users'>See all Users</a></h3>
+    
 
   </body>
 </html>

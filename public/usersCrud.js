@@ -54,7 +54,7 @@ function newUser(){
 
 
 function postUser(uName){
-	if ($("#password").val() !== $("#confirm").val()){
+	if ($("#newPass").val() !== $("#confirm").val()){
 		alert("Passwords do not match");
 	}
 	else{

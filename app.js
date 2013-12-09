@@ -36,19 +36,23 @@ app.use(function(req, res, next){
 });
 
 // Routes
-app.get('/', routes.index);
-app.get('/index', routes.index);
+app.get('/', restrict, routes.index);
+app.get('/index', restrict, routes.index);
 //app.get('/users/:db/:collection/:operation', user.mongo);
 
-app.get('/users', user.list);
-app.get('/users/:username', user.get);
+app.get('/users', restrict, user.list);
+app.get('/users/:username', restrict, user.get);
 app.put('/users', user.put);
-app.post('/users/:username', user.post);
-app.delete('/users/:username', user.delete);
+app.post('/users/:username', restrict, user.post);
+app.delete('/users/:username', restrict, user.delete);
 
-app.get('/songs', songs.list);
-app.post('/songs', songs.post);
-app.put('/songs', songs.put);
+app.get('/new', function(req, res){
+  res.render('newuser');
+})
+
+app.get('/songs', restrict, songs.list);
+app.post('/songs', restrict, songs.post);
+app.put('/songs', restrict, songs.put);
 
 function restrict(req, res, next) {
   if (req.session.user) {
@@ -112,14 +116,17 @@ function authenticate(name, pass, fn) {
   mongo.find("db", "users", {username: name}, function(model){
     if (model.length<1){
       console.log("cannot find user");
+      fn(new Error('invalid username password combination'));
     }
     else{
       var user = model[0];
         hash(pass, user.salt, function(err, hash){
-            console.log(user);
             if (err) return fn(err);
-            if (hash == user.hash) console.log('hash matches'); return fn(null, user);
-            fn(new Error('invalid password'));
+            if (hash == user.password){
+              console.log("user matches"); 
+              return fn(null, user);
+            }
+            fn(new Error('invalid username password combination'));
           });
     } 
   });

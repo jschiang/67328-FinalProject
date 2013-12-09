@@ -1,17 +1,17 @@
 h1 {
 	font-family: verdana;
-	float:left ;
 	margin: 15px;
 }
 
 body {
-	margin-left: 10%;
+	margin-left: 5%;
 	font-family: verdana
 }
 
 li {
 	margin: 2px;
 	cursor: pointer;
+	font-size: 15px;
 }
 
 li:hover {
@@ -22,18 +22,119 @@ ul {
 	list-style-type: none;
 }
 
+a:link{
+	text-decoration: none;
+}
+
 #form{
 	margin: 15px;
 	float: left;
 }
 
-#SCplayer {
-	margin-top:  30px;
+/*Index Page*/
+
+#slider{
+	width: 200px;
+	margin-bottom: 20px;
+	margin-left: 32%;
+}
+
+#twosides{
+	margin-bottom: 10%;
+}
+
+#side1{
+	float: left;
+	margin-right: 5%;
+	margin-bottom: 5%;
+}
+
+#side2{
+	float:left;
+	margin-bottom: 5%;
+}
+
+#aud1{
+	width: 450px;
+}
+
+#aud2{
+	width: 450px;
+}
+
+.queue{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.queue li {
+	margin: 0px;
+}
+
+#soundcloud {
+	margin-top: 0%;
+	margin-bottom: 10%;
+}
+
+#resultsList{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	font-size: 10px;
+}
+
+#resultsList li{
+	font-size: 15px;
 }
 
 #songResults{
 	width: 400px;
 	height: 100px;
 	overflow-y: scroll;
-	font-size: x-small;
+	font-size: 10px;
+	margin: 15px;
 }
+
+#SCplayer {
+	margin-left: 20px;
+}
+
+#search{
+	float: left;
+}
+
+
+
+/*Header*/
+#navbar {
+list-style-type:none;
+padding:0;
+overflow: hidden;
+}
+
+
+#navbar a:visited, #navbar a:link {
+	display:block;
+	width:120px;
+	font-weight:bold;
+	color:#FFFFFF;
+	background-color:#98bf21;
+	text-align:center;
+	padding:4px;
+	text-decoration:none;
+	text-transform:uppercase;
+}
+
+#navbar a:hover, #navbar a:active
+{
+background-color:#7A991A;
+}
+
+.navItem{
+	float:left;
+}
+
+
+
+

@@ -4,22 +4,15 @@
       src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
     </script>
     <script type="text/javascript" src="../usersCrud.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
   </head>
   <body>
+    <% include header.ejs %>
     <div id='usersList'>
      <% users.forEach(function(user) { %>
         <p>Name: <a href="/users/<%=user.username%>"> <%= user.username %> </a></p>
       <% }) %>
     </div>
 
-    <div id='newUser'>
-      <h3>Make a new User</h3>
-      <form id="newUserForm">
-        <input type="text" id="username" name="username" placeholder="Username"><br>
-        <input type="password" id="password" name="password" placeholder="Password"><br>
-        <input type="password" id="check" name="check" placeholder="Corfirm Password"><br>
-        <input id="putButton" type="submit" value="Create User" onclick="newUser()">
-      </form>
-    </div>
   </body>
 </html>

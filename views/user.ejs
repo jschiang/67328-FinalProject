@@ -2,20 +2,23 @@
 	<head>	
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     	<script type="text/javascript" src="../usersCrud.js"></script>
-    	
+    	<link rel="stylesheet" type="text/css" href="../css/style.css"> 
 	</head>
-	<h1>Hi <%=user.username%></h1>
-	<div>
-		<form id='updateUser' style='display: none;'>
-			<input type='text' id='newuName' placeholder=<%=user.username%>><br>
-			<inptu type='passwprd' id='oldPass' placerhold='Old Password'><br>
-			<input type='password' id='newPass' placeholder='New Password'><br>
-			<input type='password' id='confirm' placeholder='Confirm Password'><br>
-			<input type='submit' value='Submit' onclick="postUser('<%=user.username%>')">
-		</form>
-	</div>
-	<div id='userActions'>
-		<button type='button' onclick="$('#updateUser').show();">Edit User</button>
-    	<button type='button'onclick="deleteUser('<%=user.username%>')">Delete User</button>
-    </div>	
+	<body>
+		<% include header.ejs %>
+		<h1>Hi <%=user.username%></h1> <br>
+		<div>
+			<form id='updateUser' style='display: none;'>
+				<input type='text' id='newuName' placeholder=<%=user.username%>><br>
+				<input type='passwprd' id='oldPass' placeholder='Old Password'><br>
+				<input type='password' id='newPass' placeholder='New Password'><br>
+				<input type='password' id='confirm' placeholder='Confirm Password'><br>
+				<input type='submit' value='Submit' onclick="postUser('<%=user.username%>')">
+			</form>
+		</div>
+		<div id='userActions'>
+			<button type='button' onclick="$('#updateUser').show();">Edit User</button>
+	    	<button type='button'onclick="deleteUser('<%=user.username%>')">Delete User</button>
+	    </div>	
+    </body>
 </html>

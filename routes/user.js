@@ -77,26 +77,27 @@ function makeSalt()
     return text;
 }
 
-/*
 function authenticate(name, pass, fn) {
   if (!module.parent) console.log('authenticating %s:%s', name, pass);
-  mongo.find("db", "users", {username: req.params.username}, function(model){
-		if (model.length<1){
-			console.log("cannot find user");
-		}
-		else{
-			var user = user: model[0];
-				hash(pass, user.salt, function(err, hash){
-				    if (err) return fn(err);
-				    if (hash == user.hash) return fn(null, user);
-				    fn(new Error('invalid password'));
-				  });
-			}
-		}	
-	});
+  mongo.find("db", "users", {username: name}, function(model){
+    if (model.length<1){
+      console.log("cannot find user");
+      fn(new Error('invalid username password combination'));
+    }
+    else{
+      var user = model[0];
+        hash(pass, user.salt, function(err, hash){
+            if (err) return fn(err);
+            if (hash == user.password){
+              console.log("user matches"); 
+              return fn(null, user);
+            }
+            fn(new Error('invalid username password combination'));
+          });
+    } 
+  });
   
 }
-*/
 
 
 
