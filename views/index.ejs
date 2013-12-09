@@ -9,6 +9,8 @@
       <script src="SCapi.js" type="text/javacript"></script>
     <script type="text/javascript" src="soundcloudJS.js"></script>
     <script type="text/javascript" src="player.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/handheld.css" media="(min-width: 400px) and (max-width: 800px)">
     <link rel="stylesheet" type="text/css" href="css/style.css" media="(min-width: 800px)"> 
   </head>
 
@@ -35,7 +37,7 @@
       </div>
 
       <div id="SCplayer">
-        <iframe frameborder="no" height="100" scrolling="no" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/89894560" width="40%"></iframe>
+        <iframe frameborder="no" scrolling="no" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/89894560"></iframe>
       </div>
 
 
@@ -60,7 +62,7 @@
           <ul class="queue">
             <% queue.forEach(function(song){ 
                 if(song.queue == 'queue1'){%>
-              <li><%=song.songName%></li>
+              <li><%=song.songName%><hr></li>
             <%}
             });%>
           </ul>
@@ -83,7 +85,7 @@
           <ul class="queue">
             <% queue.forEach(function(song){ 
               if(song.queue == 'queue2'){%>
-              <li><%=song.songName%></li>
+              <li><%=song.songName%><hr></li>
             <%}
             });%>
           </ul>

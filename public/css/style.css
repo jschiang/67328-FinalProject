@@ -34,9 +34,9 @@ a:link{
 /*Index Page*/
 
 #slider{
-	width: 200px;
+	width: 15%;
 	margin-bottom: 20px;
-	margin-left: 32%;
+	margin-left: 31%;
 }
 
 #twosides{
@@ -47,19 +47,21 @@ a:link{
 	float: left;
 	margin-right: 5%;
 	margin-bottom: 5%;
+	width: 40%;
 }
 
 #side2{
 	float:left;
 	margin-bottom: 5%;
+	width: 40%;
 }
 
 #aud1{
-	width: 450px;
+	width: 80%;
 }
 
 #aud2{
-	width: 450px;
+	width: 80%;
 }
 
 .queue{
@@ -104,8 +106,18 @@ a:link{
 	float: left;
 }
 
+#results{
+	margin-bottom: 10%;
+}
 
+hr {
+	margin: 3px;
+}
 
+iframe{
+	height: 100px;
+	width: 40%;
+}
 /*Header*/
 #navbar {
 list-style-type:none;

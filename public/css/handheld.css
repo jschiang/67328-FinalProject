@@ -1,0 +1,98 @@
+body {
+	font-family: verdana;
+	font-size: 10px;
+}
+
+/*soundcloud*/
+iframe{
+	height: 100px;
+	width: 50%;
+}
+
+#soundcloud {
+	margin-top: 0%;
+	margin-bottom: 20%;
+}
+
+#resultsList{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	font-size: 10px;
+}
+
+#resultsList li{
+	font-size: 10px;
+}
+
+#songResults{
+	width: 80%;
+	height: 100px;
+	overflow-y: scroll;
+	font-size: 10px;
+	margin: 15px;
+}
+
+
+#search{
+	float: left;
+}
+
+/*other index*/
+
+.queue{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.queue li {
+	margin: 0px;
+}
+
+#slider{
+	display: none;
+}
+
+#side1{
+	margin-top: 10%;
+	margin-right: 10%;
+}
+#side2{
+	display: none;
+}
+
+/*songs*/
+.addTo2{
+	display: none;
+}
+/*Header*/
+#navbar {
+list-style-type:none;
+padding:0;
+overflow: hidden;
+}
+
+
+#navbar a:visited, #navbar a:link {
+	display:block;
+	width:100%;
+	height: 20px;
+	font-weight:bold;
+	color:#FFFFFF;
+	background-color:#98bf21;
+	text-align:center;
+	padding:4px;
+	text-decoration:none;
+	text-transform:uppercase;
+}
+
+#navbar a:hover, #navbar a:active
+{
+background-color:#7A991A;
+}
+
+.navItem{
+	float:left;
+	margin: 10px;
+}
