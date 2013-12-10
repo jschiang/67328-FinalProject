@@ -53,6 +53,7 @@ app.get('/new', function(req, res){
 app.get('/songs', restrict, songs.list);
 app.post('/songs', restrict, songs.post);
 app.put('/songs', restrict, songs.put);
+app.delete('/songs', restrict, songs.delete);
 
 function restrict(req, res, next) {
   if (req.session.user) {

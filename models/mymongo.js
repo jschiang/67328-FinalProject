@@ -74,10 +74,9 @@ exports.delete = function(database, collection, query, callback){
 /* console.log(query);
   mongoClient.connect(server+database, function(err, db){
     if (err) doError(err);*/
-
     db.collection(collection).remove(query, function(err, crsr){
         if (err) doError(err);
-        callback('Deleted User');
+        callback('Deleted');
       });
 // });
 }

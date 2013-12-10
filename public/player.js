@@ -9,13 +9,13 @@ $(document).ready(function(){
 
 		if($(this).parent().parent()[0].id == "queue1"){
 			aud1.setAttribute('src', "uploads/"+song);
-                        $('#juke1 .info').html(song);
+            $('#juke1 .info').html(song);
 			aud1.load();
 		}
 
 		if($(this).parent().parent()[0].id == "queue2"){
 			aud2.setAttribute('src', "uploads/"+song);
-                        $('#juke2 .info').html(song);
+           	$('#juke2 .info').html(song);
 			aud2.load();
 		}
 	})
@@ -25,3 +25,19 @@ $(document).ready(function(){
 	    aud2.volume=$('#slider').val()/100;
 	});
 })
+
+function deleteSong(queue, song){
+	$.ajax({
+		url: "songs",
+		type: "delete", 
+		data: {
+			queue: queue,
+			songName: song,
+		},
+		success: function(data){
+			console.log(data);
+			location.reload();
+		}
+	});
+	return false;
+}

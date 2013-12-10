@@ -50,9 +50,8 @@
       <div id="side1">
         <div id="juke1" class="juke">
           <div class="info"></div>
-          <audio controls="controls" id="aud1">
+          <audio controls="controls" id="aud1" src="uploads/WHITE CHRISTMAS - Frank Sinatra.mp3" type="audio/mpeg">
              <!-- <source src="track.ogg" type="audio/ogg" /> -->
-              <source src="uploads/WHITE CHRISTMAS - Frank Sinatra.mp3" type="audio/mpeg" />
               Your browser does not support the audio element
           </audio>
         </div>
@@ -62,7 +61,8 @@
           <ul class="queue">
             <% queue.forEach(function(song){ 
                 if(song.queue == 'queue1'){%>
-              <li><%=song.songName%><hr></li>
+              <li><%=song.songName%></li>
+              <button onclick="deleteSong('<%=song.queue%>', '<%=song.songName%>')">Delete From Queue</button>
             <%}
             });%>
           </ul>
@@ -72,9 +72,7 @@
       <div id="side2">
          <div id="juke2" class="juke">
             <div class="info"></div>
-              <audio controls="controls" id="aud2">
-               <!-- <source src="track.ogg" type="audio/ogg" /> -->
-                <source src="uploads/Adams, Douglas --  Mostly Harmless -- Disc 2 of 5.mp3" type="audio/mpeg" />
+              <audio controls="controls" id="aud2" src="uploads/Fun. - Sleigh Ride.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
               </audio>
           </div>
@@ -85,7 +83,8 @@
           <ul class="queue">
             <% queue.forEach(function(song){ 
               if(song.queue == 'queue2'){%>
-              <li><%=song.songName%><hr></li>
+              <li><%=song.songName%></li>
+              <button onclick="deleteSong('<%=song.queue%>', '<%=song.songName%>')">Delete From Queue</button>
             <%}
             });%>
           </ul>
