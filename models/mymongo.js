@@ -7,15 +7,15 @@ var server = "mongodb://localhost:27017/";
 */
 //Jitsu
 var mongodb = require('mongodb');
-             var db = new mongodb.Db('nodejitsu_jschiang_nodejitsudb5527906001',
-               new mongodb.Server('ds045988.mongolab.com', 45988, {})
-             );
-             db.open(function (err, db_p) {
-               if (err) { throw err; }
-               db.authenticate('nodejitsu_jschiang', 'iiap7e87kbirrujbsf6161eje6', function (err, replies) {
-                 // You are now connected and authenticated.
-               });
-             });
+   var db = new mongodb.Db('nodejitsu_jschiang_nodejitsudb5527906001',
+     new mongodb.Server('ds045988.mongolab.com', 45988, {})
+   );
+   db.open(function (err, db_p) {
+     if (err) { throw err; }
+     db.authenticate('nodejitsu_jschiang', 'iiap7e87kbirrujbsf6161eje6', function (err, replies) {
+       // You are now connected and authenticated.
+     });
+   });
 
 
 //db/:collection/:operation/:document
